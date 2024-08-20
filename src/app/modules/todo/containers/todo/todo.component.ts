@@ -9,6 +9,7 @@ import { TodoFormComponent } from '../../presentationals/todo-form/todo-form.com
 import { TodoService } from '../../services/todo.service';
 import { TodoListComponent } from '../../presentationals/todo-list/todo-list.component';
 import { Todo } from '../../models/todo.models';
+import { TodoStore } from '../../state/todo/todo.store';
 
 @Component({
   selector: 'app-todo',
@@ -26,15 +27,32 @@ import { Todo } from '../../models/todo.models';
   ],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.scss',
+  providers: [TodoStore]
 })
 export class TodoComponent implements OnInit {
-  // TODO: Implement Functionality with Signal Store
+  private readonly todoStore = inject(TodoStore)
 
-  ngOnInit(): void {}
+  readonly count = this.todoStore.count;
 
-  addTodo(value: string): void {}
+  readonly openCount = this.todoStore.openCount;
 
-  updateTodo(todo: Todo): void {}
+  readonly doneCount = this.todoStore.doneCount;
 
-  deleteTodo(id: string): void {}
+  readonly sortedTodos = this.todoStore.sortedTodos;
+
+  ngOnInit(): void {
+    this.todoStore.loadAll();
+  }
+
+  addTodo(value: string): void {
+    this.todoStore.add(value);
+  }
+
+  updateTodo(todo: Todo): void {
+    this.todoStore.update(todo)
+  }
+
+  deleteTodo(id: string): void {
+    this.todoStore.delete(id)
+  }
 }
