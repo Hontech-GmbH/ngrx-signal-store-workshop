@@ -28,29 +28,13 @@ import { Todo } from '../../models/todo.models';
   styleUrl: './todo.component.scss',
 })
 export class TodoComponent implements OnInit {
-  private readonly todoService = inject(TodoService);
+  // TODO: Implement Functionality with Signal Store
 
-  readonly sortedTodos = this.todoService.sortedTodos;
+  ngOnInit(): void {}
 
-  readonly count = this.todoService.count;
+  addTodo(value: string): void {}
 
-  readonly openCount = this.todoService.openCount;
+  updateTodo(todo: Todo): void {}
 
-  readonly doneCount = this.todoService.doneCount;
-
-  ngOnInit(): void {
-    this.todoService.getAll();
-  }
-
-  addTodo(value: string): void {
-    this.todoService.add(value);
-  }
-
-  updateTodo(todo: Todo): void {
-    this.todoService.update(todo);
-  }
-
-  deleteTodo(id: string): void {
-    this.todoService.delete(id);
-  }
+  deleteTodo(id: string): void {}
 }

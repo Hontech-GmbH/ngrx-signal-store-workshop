@@ -14,15 +14,9 @@ import { Todo } from '../../models/todo.models';
   styleUrl: './todo-detail.component.scss',
 })
 export class TodoDetailComponent {
-  private readonly todoService = inject(TodoService);
+  // TODO: Implement Functionality With Signal Store
 
   readonly id = input.required<string>();
 
-  readonly todo = toSignal(
-    toObservable(this.id).pipe(switchMap((id) => this.todoService.get(id))),
-  );
-
-  save(todo: Todo): void {
-    this.todoService.update(todo);
-  }
+  save(todo: Todo): void {}
 }
