@@ -29,7 +29,7 @@ import { TodoStore } from '../../state/todo/todo.store';
   styleUrl: './todo.component.scss',
   providers: [TodoStore]
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent {
   private readonly todoStore = inject(TodoStore)
 
   readonly count = this.todoStore.count;
@@ -39,10 +39,6 @@ export class TodoComponent implements OnInit {
   readonly doneCount = this.todoStore.doneCount;
 
   readonly sortedTodos = this.todoStore.sortedTodos;
-
-  ngOnInit(): void {
-    this.todoStore.loadAll();
-  }
 
   addTodo(value: string): void {
     this.todoStore.add(value);
