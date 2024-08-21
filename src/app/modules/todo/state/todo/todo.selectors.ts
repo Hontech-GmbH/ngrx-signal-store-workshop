@@ -1,6 +1,6 @@
-import { signalStoreFeature, type, withComputed } from "@ngrx/signals";
-import { TodoState } from "./todo.state";
-import { computed } from "@angular/core";
+import { signalStoreFeature, type, withComputed } from '@ngrx/signals';
+import { TodoState } from './todo.state';
+import { computed } from '@angular/core';
 
 export function withTodoSelectors() {
   return signalStoreFeature(
@@ -11,6 +11,6 @@ export function withTodoSelectors() {
       doneCount: computed(() => todos().filter((todo) => todo.done).length),
       openCount: computed(() => todos().filter((todo) => !todo.done).length),
       sortedTodos: computed(() => todos().sort((b, a) => +b.done - +a.done)),
-    }))
-  )
+    })),
+  );
 }
