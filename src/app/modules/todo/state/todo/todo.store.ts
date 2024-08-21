@@ -1,6 +1,6 @@
 import { computed, inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from "@ngrx/signals";
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap } from 'rxjs';
 import { Todo } from '../../models/todo.models';
@@ -78,5 +78,8 @@ export const TodoStore = signalStore(
                 ))
             )
         )
-    }))
+    })),
+    withHooks({
+      onInit: (store) => store.loadAll()
+    })
 )
